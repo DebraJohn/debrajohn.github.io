@@ -24,7 +24,7 @@ export default {
   methods: {
     getDescription() {
       const thisPage = this.$route.name;
-      let description = "Welcome to whalsper.";
+      let description = "Welcome to Whalsper.";
       switch (thisPage) {
         case "music":
           description = "Songs I wrote.";
@@ -48,8 +48,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@theme-color: #628bd8;
-@font-color: #2c3e50;
+
+@import '~@/assets/styles/common.less';
+
 .menu_container {
   padding: 5rem 1rem;
   .menu {
