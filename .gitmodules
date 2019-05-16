@@ -1,5 +1,6 @@
 [submodule "source"]
 	path = source
 	url = https://github.com/debrajohn/whalsper-site
+	branch = master
 [submodule]
 	source = master
