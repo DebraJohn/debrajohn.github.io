@@ -31,7 +31,7 @@ export default {
   display: flex;
   justify-content: center;
   font-size: 13px;
-  width: 900px;
+  // width: 900px;
   margin: auto;
   .card {
     // flex: 1;
