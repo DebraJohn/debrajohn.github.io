@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="card profile">
+    <!-- <div class="card profile">
       <div>Name: DebraJohn</div>
       <div>Major: Front-End Engineer</div>
       <div>Sideline: Song Writer</div>
@@ -9,7 +9,7 @@
       <div class="contact-me">email: nihaozzihui@163.com</div>
       <div>......</div>
       <div>Not finished yet</div>
-    </div>
+    </div> -->
     <!-- <div class="card"></div>
     <div class="card"></div> -->
   </div>
