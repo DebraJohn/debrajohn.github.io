@@ -46,7 +46,7 @@ export default {
       overflow: hidden;
       position: relative;
       cursor: pointer;
-      margin: 2rem;
+      // margin: 2rem;
       background: #333;
       & > img {
         height: 100%;
