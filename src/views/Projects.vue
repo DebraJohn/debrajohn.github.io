@@ -22,6 +22,12 @@ export default {
           tag: "React",
           thumbnail: require("@/assets/images/calculator.png"),
           link: 'https://debrajohn.github.io/calculator-react/build'
+        },
+        {
+          title: "Greatest Dad",
+          tag: "Vue",
+          thumbnail: require("@/assets/images/greatest-dad.png"),
+          link:'https://debrajohn.github.io/Greatest-Dad/dist/'
         }
       ]
     };
@@ -38,7 +44,7 @@ export default {
   @import '~@/assets/styles/common.less';
   .projects {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     .item {
       flex-basis: 25rem;
@@ -46,7 +52,7 @@ export default {
       overflow: hidden;
       position: relative;
       cursor: pointer;
-      // margin: 2rem;
+      margin: 2rem;
       background: #333;
       & > img {
         height: 100%;
