@@ -51,7 +51,7 @@ export default {
     stickMenu() {
       const fromTop =
         document.documentElement.scrollTop || document.body.scrollTop;
-      this.stick = fromTop > 32;
+      this.stick = fromTop > 120;
     }
   },
   watch: {
@@ -64,13 +64,15 @@ export default {
 @import "~@/assets/styles/common.less";
 
 .menu_container {
-  padding: 5rem 1rem;
+  padding: 4rem 1rem;
   // background: #e8f5ff;
   background: #fff;
+  flex-basis: 10%;
   &.stick {
-    width: 80%;
+    width: 100%;
     position: fixed;
     top: 0;
+    left: 0;
     padding: 2rem 1rem;
     z-index: 2;
   }

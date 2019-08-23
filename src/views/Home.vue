@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <div v-html="article" class="artical-content"></div>
     <!-- <div class="card profile">
       <div>Name: DebraJohn</div>
       <div>Major: Front-End Engineer</div>
@@ -17,10 +18,25 @@
 
 <script>
 // @ is an alias to /src
+import MD from '@/articles/Array.md'
 
 export default {
   name: "home",
-  components: {}
+  components: {},
+  data() {
+    return {
+      article: ''
+    }
+  },
+  methods: {
+    testMarkdown() {
+      this.article = MD
+    }
+  },
+  created: function() {
+    this.testMarkdown()
+  }
+  
 };
 </script>
 
@@ -31,8 +47,12 @@ export default {
   display: flex;
   justify-content: center;
   font-size: 13px;
+  height: 90%;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   // width: 900px;
-  margin: auto;
   .card {
     // flex: 1;
     width: 300px;

@@ -7,6 +7,7 @@
 
 <script>
 import Menu from "@/components/Menu.vue";
+import '@/assets/styles/markdown.less'
 
 export default {
   name: "home",
@@ -25,6 +26,7 @@ export default {
 html,
 body {
   width: 100%;
+  height: 100%;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -33,5 +35,9 @@ body {
   text-align: center;
   color: #2c3e50;
   padding: 0 10%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: scroll;
 }
 </style>
