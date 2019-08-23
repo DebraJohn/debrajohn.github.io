@@ -64,10 +64,10 @@ export default {
 @import "~@/assets/styles/common.less";
 
 .menu_container {
-  padding: 4rem 1rem;
+  padding: 10% 1rem;
   // background: #e8f5ff;
   background: #fff;
-  flex-basis: 10%;
+  // height: 10%;
   &.stick {
     width: 100%;
     position: fixed;
