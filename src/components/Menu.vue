@@ -7,11 +7,14 @@
       <router-link to="/projects" title="Projects I build.">Projects</router-link>
       <router-link to="/about" title="Who I am.">About</router-link>
     </div>
-    <div class="description">{{description}}</div>
+    <div v-if="!stick" class="description">{{description}}</div>
+    <!-- <div class="srollToTop" v-show="stick" @click="scrollToTop()">Top</div> -->
   </div>
 </template>
 
 <script>
+import EventBus from '@/core/eventBus';
+
 export default {
   name: "Menu",
   data() {
@@ -25,6 +28,8 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.stickMenu, true);
+    this.menuPadding = this.$refs.menu_container.height
+    console.log(this.menuPadding)
   },
   methods: {
     getDescription() {
@@ -51,7 +56,12 @@ export default {
     stickMenu() {
       const fromTop =
         document.documentElement.scrollTop || document.body.scrollTop;
-      this.stick = fromTop > 120;
+      this.stick = fromTop > 80;
+      EventBus.$emit('stickMenu', this.stick)
+    },
+    scrollToTop() {
+      document.getElementById('app').scrollIntoView('false')
+      this.stick = false
     }
   },
   watch: {
@@ -64,16 +74,16 @@ export default {
 @import "~@/assets/styles/common.less";
 
 .menu_container {
-  padding: 10% 1rem;
+  padding: 5rem 1rem;
   // background: #e8f5ff;
-  background: #fff;
+  background: rgba(#fff, 0.9);
   // height: 10%;
   &.stick {
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     z-index: 2;
   }
   .menu {
@@ -93,6 +103,18 @@ export default {
     margin-top: 1.5rem;
     font-size: 13px;
     color: @font-color;
+  }
+  .srollToTop {
+    position: fixed;
+    right: 1rem;
+    bottom: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(#628bd8, 0.8);
+    border-radius: 50%;
+    color: #fff;
+    line-height: 2.5rem;
+    text-align: center;
   }
 }
 </style>

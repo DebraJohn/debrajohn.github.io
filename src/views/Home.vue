@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <div v-html="article" class="artical-content"></div>
+  <div class="home" :class="stick ? 'stick': ''">
+    <Article />
     <!-- <div class="card profile">
       <div>Name: DebraJohn</div>
       <div>Major: Front-End Engineer</div>
@@ -17,24 +17,28 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import MD from '@/articles/Array.md'
+import Article from '@/components/Article/Article.vue';
+import EventBus from '@/core/eventBus';
 
 export default {
   name: "home",
-  components: {},
+  components: {
+    Article
+  },
   data() {
     return {
-      article: ''
+      Article,
+      stick: false
     }
   },
   methods: {
-    testMarkdown() {
-      this.article = MD
-    }
   },
   created: function() {
-    this.testMarkdown()
+  },
+  mounted() {
+    EventBus.$on('stickMenu', data => {
+      this.stick = data
+    })
   }
   
 };
@@ -47,10 +51,8 @@ export default {
   display: flex;
   justify-content: center;
   font-size: 13px;
-  height: 90%;
-  overflow: scroll;
-  &::-webkit-scrollbar {
-    display: none;
+  &.stick {
+    margin-top: 160px;
   }
   // width: 900px;
   .card {

@@ -35,9 +35,5 @@ body {
   text-align: center;
   color: #2c3e50;
   padding: 0 10%;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: scroll;
 }
 </style>
