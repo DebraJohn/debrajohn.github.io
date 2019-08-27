@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import EventBus from '@/core/eventBus';
+import EventBus from "@/core/eventBus";
 
 export default {
   name: "Menu",
@@ -56,11 +56,11 @@ export default {
       const fromTop =
         document.documentElement.scrollTop || document.body.scrollTop;
       this.stick = fromTop > 80;
-      EventBus.$emit('stickMenu', this.stick)
+      EventBus.$emit("stickMenu", this.stick);
     },
     scrollToTop() {
-      document.getElementById('app').scrollIntoView('false')
-      this.stick = false
+      document.getElementById("app").scrollIntoView("false");
+      this.stick = false;
     }
   },
   watch: {
