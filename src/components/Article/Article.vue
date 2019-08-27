@@ -32,6 +32,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.article {
+  widows: 100%;
+}
 .article-content {
   margin-bottom: 5rem;
   .content {

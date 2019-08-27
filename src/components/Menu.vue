@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/music" title="Songs I wrote.">Music</router-link>
       <!-- <router-link to="/thoughts" title="Things I saw.">Thoughts</router-link> -->
+      <router-link to="/aticles" title="Things I saw.">Aticles</router-link>
       <router-link to="/projects" title="Projects I build.">Projects</router-link>
       <router-link to="/about" title="Who I am.">About</router-link>
     </div>
@@ -28,8 +29,6 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.stickMenu, true);
-    this.menuPadding = this.$refs.menu_container.height
-    console.log(this.menuPadding)
   },
   methods: {
     getDescription() {
@@ -39,7 +38,7 @@ export default {
         case "music":
           description = "Songs I wrote.";
           break;
-        case "thoughts":
+        case "aticles":
           description = "Things I saw.";
           break;
         case "projects":
