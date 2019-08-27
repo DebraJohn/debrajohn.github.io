@@ -1,4 +1,4 @@
-const ARTICLE_TITLE = ['Array'];
+const ARTICLE_TITLE = ['Array', 'UsingMapInsteadOfIfElse'];
 
 const getArticalPath = () => {
   const dir_paths = {};
