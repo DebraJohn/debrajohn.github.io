@@ -23,6 +23,9 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 html,
 body {
   width: 100%;

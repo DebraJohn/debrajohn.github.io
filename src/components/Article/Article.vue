@@ -33,7 +33,7 @@ export default {
 
 <style lang="less" scoped>
 .article {
-  widows: 100%;
+  width: 100%;
 }
 .article-content {
   margin-bottom: 5rem;
