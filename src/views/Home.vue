@@ -1,6 +1,5 @@
 <template>
   <div class="home" :class="stick ? 'stick': ''">
-    <Article />
     <!-- <div class="card profile">
       <div>Name: DebraJohn</div>
       <div>Major: Front-End Engineer</div>
@@ -17,17 +16,14 @@
 </template>
 
 <script>
-import Article from '@/components/Article/Article.vue';
 import EventBus from '@/core/eventBus';
 
 export default {
   name: "home",
   components: {
-    Article
   },
   data() {
     return {
-      Article,
       stick: false
     }
   },

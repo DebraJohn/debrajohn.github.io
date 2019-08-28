@@ -28,7 +28,7 @@ export default {
     msg: String
   },
   mounted() {
-    window.addEventListener("scroll", this.stickMenu, true);
+    // window.addEventListener("scroll", this.stickMenu, true);
   },
   methods: {
     getDescription() {
@@ -75,7 +75,7 @@ export default {
 .menu_container {
   padding: 5rem 1rem;
   // background: #e8f5ff;
-  background: rgba(#fff, 0.9);
+  background: #fff;
   // height: 10%;
   &.stick {
     width: 100%;
@@ -84,6 +84,7 @@ export default {
     left: 0;
     padding: 1rem 1rem;
     z-index: 2;
+    // border-bottom: 1px solid #eaeaea;
   }
   .menu {
     display: flex;

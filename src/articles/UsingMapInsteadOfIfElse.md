@@ -1,4 +1,4 @@
-# js - 用遍历代替if/else
+# 用遍历代替if/else | JS
 <html><div class="articleTime">2019.07.29</div></html>
 
 ---

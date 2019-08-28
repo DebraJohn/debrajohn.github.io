@@ -1,4 +1,4 @@
-# JS基础 | 数组
+# 数组基础 | JS
 <html><div class="articleTime">2019.08.13</div></html>
 
 ---

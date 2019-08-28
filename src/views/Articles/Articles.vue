@@ -1,6 +1,6 @@
 <template>
   <div class="articles" :class="stick ? 'stick': ''">
-    <Article />
+    <Article :showCategory="true" />
   </div>
 </template>
 

@@ -38,5 +38,13 @@ body {
   text-align: center;
   color: #2c3e50;
   padding: 0 10%;
+  min-height: 100%;
+}
+
+.footer {
+  padding: 0.3rem;
+  text-align: center;
+  font-size: 12px;
+  color: #2c3e50;
 }
 </style>
