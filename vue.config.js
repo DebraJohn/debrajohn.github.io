@@ -1,7 +1,7 @@
 module.exports = {
-  publicPath: '/dist',
+  publicPath: '/',
   outputDir: 'dist',
-  assetsDir: './',
+  assetsDir: '../',
   indexPath: '../index.html',
   configureWebpack: {
     module: {
