@@ -1,5 +1,5 @@
 <template>
-  <div class="article">
+  <div class="article" @touch="handleTouch()">
     <div v-if="showCategory" class="category">
       <div class="trigger"></div>
       <div class="category-item title">文章目录</div>
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       article: ARTICLE_LIST,
-      activeIndex: -1,
+      activeIndex: -1
     }
   },
   props: {
@@ -35,16 +35,23 @@ export default {
     toggleContent(index) {
       this.activeIndex = this.activeIndex !== index ? index : -1
       this.scrollToThisArticle(index)
-
     },
     scrollToThisArticle(index) {
       this.$refs.articleContent[index].scrollIntoView()
+    },
+    handleTouch() {
+      if(!this.isPhone()) return
+    },
+    isPhone() {
+      return /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)
     }
   },
-  created: function() {
+  created() {
   },
-  mounted: function() {
-  }
+  mounted() {
+  },
+  beforeDestroy(){
+  },
   
 };
 </script>
