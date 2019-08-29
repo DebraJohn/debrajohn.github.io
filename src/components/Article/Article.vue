@@ -1,7 +1,7 @@
 <template>
-  <div class="article" @touch="handleTouch()">
-    <div v-if="showCategory" class="category">
-      <div class="trigger"></div>
+  <div class="article">
+    <div v-if="showCategory" class="category" :class="showCategoryFlag && 'show'">
+      <div class="category-trigger"></div>
       <div class="category-item title">文章目录</div>
       <div class="category-item item" v-for="(item, index) in article" :key="index"
         @click="scrollToThisArticle(index)">{{item.title}}</div>
@@ -18,6 +18,7 @@
 <script>
 // @ is an alias to /src
 const { ARTICLE_LIST } = require('./articleList')
+import { isPhone } from '@/core/exc'
 
 export default {
   name: "article",
@@ -25,7 +26,8 @@ export default {
   data() {
     return {
       article: ARTICLE_LIST,
-      activeIndex: -1
+      activeIndex: -1,
+      showCategoryFlag: false
     }
   },
   props: {
@@ -39,18 +41,18 @@ export default {
     scrollToThisArticle(index) {
       this.$refs.articleContent[index].scrollIntoView()
     },
-    handleTouch() {
-      if(!this.isPhone()) return
-    },
-    isPhone() {
-      return /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)
+    handleTouch(e) {
+      if(isPhone()) return
+      this.showCategoryFlag = e.target.className.indexOf('category') > -1
     }
   },
   created() {
   },
   mounted() {
+    document.querySelector('#app').addEventListener('click', this.handleTouch, true)
   },
-  beforeDestroy(){
+  beforeDestroy() {
+    document.querySelector('#app').removeEventListener('touch', this.handleTouch, true)
   },
   
 };
@@ -71,19 +73,22 @@ export default {
     box-shadow: 1px 0px 3px #999;
     z-index: 2;
     transition: 0.2s linear;
+    &.show,
     &:hover {
       left: 0;
       transition: 0.2s linear;
     }
-    .trigger {
+    .category-trigger {
       position: absolute;
       right: -3rem;
       top: 0;
-      background-color:#628bd8;
       border: 1rem solid transparent;
-      border-right: 1rem solid #fff;
+      border-top: 1rem solid #628bd8;
+      border-bottom: 1rem solid #628bd8;
+      border-left: 1rem solid #628bd8;
+      border-right: 1rem solid transparent;
       &::before {
-        content: "";
+        content: " ";
         position: absolute;
         top: -1rem;
         left: -17rem;
