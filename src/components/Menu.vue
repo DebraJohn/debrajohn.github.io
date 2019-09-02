@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/music" title="Songs I wrote.">Music</router-link>
       <!-- <router-link to="/thoughts" title="Things I saw.">Thoughts</router-link> -->
-      <router-link to="/aticles" title="Things I saw.">Aticles</router-link>
+      <router-link to="/articles" title="Things I saw.">Articles</router-link>
       <router-link to="/projects" title="Projects I build.">Projects</router-link>
       <router-link to="/about" title="Who I am.">About</router-link>
     </div>
@@ -38,7 +38,7 @@ export default {
         case "music":
           description = "Songs I wrote.";
           break;
-        case "aticles":
+        case "articles":
           description = "Things I saw.";
           break;
         case "projects":
