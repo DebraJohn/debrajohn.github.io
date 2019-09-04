@@ -37,6 +37,11 @@ export default new Router({
       path: '/projects',
       name: 'projects',
       component: Projects
+    },
+    {
+      path: '/articles/:articleId',
+      name: 'article',
+      component: () => import('./components/Article/Article.vue')
     }
   ]
 })

@@ -4,12 +4,11 @@
       <div class="category-trigger"></div>
       <div class="category-item title">文章目录</div>
       <div class="category-item item" v-for="(item, index) in article" :key="index"
-        @click="scrollToThisArticle(index)">{{item.title}}</div>
+        @click="toThisArticle(item.id)">{{item.title}}</div>
     </div>
     <div class="article-container">
-      <div class="article-content" v-for="(item, index) in article" :key="index" ref="articleContent">
-        <div class="content" v-html="item.content" :class="activeIndex !== index ? 'ellipsis': ''"></div>
-        <div class="read-more" @click="toggleContent(index)">{{activeIndex !== index ? '展开' : '收起'}}全文</div>
+      <div class="article-content" ref="articleContent">
+        <div class="content" v-html="thisArticle.content"></div>
       </div>
     </div>
   </div>
@@ -22,33 +21,39 @@ import { isPhone } from '@/core/exc'
 
 export default {
   name: "article",
-  components: {},
+  components: {
+  },
   data() {
     return {
-      article: ARTICLE_LIST,
+      ARTICLE_LIST,
       activeIndex: -1,
-      showCategoryFlag: false
+      showCategoryFlag: false,
+      thisArticle: {}
     }
   },
   props: {
     showCategory: Boolean
   },
   methods: {
-    toggleContent(index) {
-      this.activeIndex = this.activeIndex !== index ? index : -1
-      this.scrollToThisArticle(index)
+    findThisArticle(id) {
+      this.thisArticle = ARTICLE_LIST.find(item => item.id === id)
     },
     scrollToThisArticle(index) {
       this.$refs.articleContent[index].scrollIntoView()
     },
     handleTouch(e) {
-      if(isPhone()) return
+      if(!isPhone()) return
       this.showCategoryFlag = e.target.className.indexOf('category') > -1
+    },
+    toThisArticle(articleId) {
+      this.$router.push({ name: 'test', params: { testId: articleId }})
     }
   },
   created() {
+    // console.log(ARTICLE_LIST)
   },
   mounted() {
+    this.findThisArticle(this.$route.params.articleId)
     document.querySelector('#app').addEventListener('click', this.handleTouch, true)
   },
   beforeDestroy() {

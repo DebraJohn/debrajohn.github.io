@@ -33,8 +33,11 @@ export default {
   methods: {
     getDescription() {
       const thisPage = this.$route.name;
-      let description = "Welcome to whalsper.";
+      let description = "";
       switch (thisPage) {
+        case "home":
+          description = "Welcome to whalsper.";
+          break;
         case "music":
           description = "Songs I wrote.";
           break;
@@ -48,6 +51,7 @@ export default {
           description = "Who I am.";
           break;
         default:
+          description = ""
           break;
       }
       return (this.description = description);
