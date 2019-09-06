@@ -5,12 +5,6 @@ const projectsData = [
     thumbnail: require("@/assets/images/Calculator.svg"),
     link: 'https://debrajohn.github.io/calculator-react/build',
   },
-  // {
-  //   title: "Greatest Dad",
-  //   tag: "Vue",
-  //   thumbnail: require("@/assets/images/greatest-dad.png"),
-  //   link:'https://debrajohn.github.io/Greatest-Dad/dist/'
-  // },
   {
     title: "Collecting Game",
     tag: 'React',

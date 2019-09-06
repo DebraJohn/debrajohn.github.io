@@ -1,7 +1,7 @@
 module.exports = {
   publicPath: '/',
   outputDir: 'dist',
-  assetsDir: '../',
+  assetsDir: process.env.NODE_ENV === 'production' ? '../' : 'dist',
   indexPath: '../index.html',
   configureWebpack: {
     module: {
