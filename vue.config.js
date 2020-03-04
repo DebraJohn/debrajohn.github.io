@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/page',
+  publicPath: process.env.NODE_ENV === 'production' ? '/page' : '/',
   outputDir: 'page',
   assetsDir: process.env.NODE_ENV === 'production' ? './' : 'page',
   indexPath: '../index.html',

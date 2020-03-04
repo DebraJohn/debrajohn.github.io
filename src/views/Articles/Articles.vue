@@ -9,13 +9,13 @@
         </span>
       </div>
     </div>
-    <!-- TODO: tag分类功能 -->
-    <!-- <div class="tag-container">
-      <div class="">By Tag</div>
-      <div class="tag-list" v-for="(item, index) in TAG_LIST" :key="index">
-        {{item}}
+    <div class="category">
+      <div class="categoryTitle">我的记本</div>
+      <div class="categoryItem" v-for="(item, index) in category" :key="index">
+        <a-icon type="book" />
+        <span>{{item.categoryTitle}}</span>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -23,6 +23,10 @@
 import Article from '@/components/Article/Article.vue';
 const { ARTICLE_LIST, TAG_LIST } = require('@/components/Article/articleList')
 import EventBus from '@/core/eventBus';
+import { category, articleList, articleDetail } from './mock'
+import { Icon } from 'ant-design-vue'
+import Vue from "vue";
+Vue.use(Icon)
 
 export default {
   name: "articles",
@@ -31,6 +35,7 @@ export default {
   },
   data() {
     return {
+      category,
       ARTICLE_LIST,
       TAG_LIST,
       stick: false
@@ -42,7 +47,7 @@ export default {
     }
   },
   created: () => {
-    console.log(ARTICLE_LIST)
+    console.log(category)
   },
   mounted() {
     EventBus.$on('stickMenu', data => {
@@ -57,9 +62,10 @@ export default {
 @import "~@/assets/styles/common.less";
 
 .articles {
-  // display: flex;
+  display: flex;
   .article-container {
-    // flex-basis: 80%;
+    margin-right: 5rem;
+    flex-basis: 75%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,11 +76,11 @@ export default {
     .article-list {
       text-align: left;
       border-bottom: 2px solid #eaeaea;
-      padding: 1rem;
+      padding: 1rem 0;
       .article-title {
         font-size: 18px;
         font-weight: bold;
-        margin: 0.5rem 0;
+        margin-bottom: 0.5rem;
         &:hover {
           color: @theme-color;
           cursor: pointer;
@@ -92,8 +98,32 @@ export default {
       }
     }
   }
-  .tag-container {
+  
+  .category {
+    flex-basis: 25%;
     text-align: left;
+    padding: 1rem 0;
+    .categoryTitle {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #eaeaea;
+    }
+    .categoryItem {
+      font-size: 14px;
+      margin: 1rem 0;
+      display: flex;
+      i {
+        margin-right: 0.5rem;
+        font-size: 16px;
+      }
+      &:hover {
+        cursor: pointer;
+        color: @theme-color;
+        font-weight: bold;
+      }
+    }
   }
 }
 </style>

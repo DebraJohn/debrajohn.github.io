@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import Home from './views/Home.vue'
 import Projects from './views/Projects/Projects.vue'
-import Articles from './views//Articles/Articles.vue'
+import Articles from './views/Articles/Articles.vue'
 
 Vue.use(Router)
 
