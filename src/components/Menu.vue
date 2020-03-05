@@ -1,14 +1,14 @@
 <template>
   <div class="menu_container" :class="stick ? 'stick': ''" ref="menu_container">
     <div class="menu">
-      <router-link to="/">Home</router-link>
-      <router-link to="/music" title="Songs I wrote.">Music</router-link>
+      <router-link to="/"><a-icon type="home" />Home</router-link>
+      <router-link to="/music" title="Songs I wrote."><a-icon type="customer-service" />Music</router-link>
       <!-- <router-link to="/thoughts" title="Things I saw.">Thoughts</router-link> -->
-      <router-link to="/articles" title="Things I saw.">Articles</router-link>
-      <router-link to="/projects" title="Projects I build.">Projects</router-link>
-      <router-link to="/about" title="Who I am.">About</router-link>
+      <router-link to="/articles" title="Things I saw."><a-icon type="file-text" />Articles</router-link>
+      <router-link to="/projects" title="Projects I build."><a-icon type="project" />Projects</router-link>
+      <router-link to="/about" title="Who I am."><a-icon type="user" />About</router-link>
     </div>
-    <div v-if="!stick" class="description">{{description}}</div>
+    <!-- <div v-if="!stick" class="description">{{description}}</div> -->
     <!-- <div class="srollToTop" v-show="stick" @click="scrollToTop()">Top</div> -->
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
     }
   },
   watch: {
-    $route: "getDescription"
+    // $route: "getDescription"
   }
 };
 </script>
@@ -77,9 +77,9 @@ export default {
 @import "~@/assets/styles/common.less";
 
 .menu_container {
-  padding: 5rem 1rem;
+  padding: 25px 0;
   // background: #e8f5ff;
-  background: #fff;
+  // background: #fff;
   // height: 10%;
   &.stick {
     width: 100%;
@@ -94,13 +94,25 @@ export default {
     display: flex;
     justify-content: center;
     a {
-      font-weight: bold;
+      font-size: 13px;
+      // font-weight: bold;
       color: @font-color;
-      padding: 0 0.7rem;
-      text-align: left;
+      padding: 0 20px;
+      text-align: center;
+      text-decoration: none;
       &.router-link-exact-active {
         color: @theme-color;
+        text-decoration: underline;
       }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    i {
+      margin-bottom: 5px;
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
     }
   }
   .description {

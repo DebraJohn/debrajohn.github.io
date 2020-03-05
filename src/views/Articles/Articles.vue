@@ -24,9 +24,6 @@ import Article from '@/components/Article/Article.vue';
 const { ARTICLE_LIST, TAG_LIST } = require('@/components/Article/articleList')
 import EventBus from '@/core/eventBus';
 import { category, articleList, articleDetail } from './mock'
-import { Icon } from 'ant-design-vue'
-import Vue from "vue";
-Vue.use(Icon)
 
 export default {
   name: "articles",

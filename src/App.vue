@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Menu/>
+    <Navigator/>
     <transition name="slide-fade" mode="out-in">
       <router-view/>
     </transition>
@@ -8,13 +8,16 @@
 </template>
 
 <script>
-import Menu from "@/components/Menu.vue";
+import Navigator from "@/components/Navigator.vue";
 import '@/assets/styles/markdown.less'
+import { Icon } from 'ant-design-vue'
+import Vue from "vue";
+Vue.use(Icon)
 
 export default {
   name: "home",
   components: {
-    Menu
+    Navigator
   }
 };
 </script>
@@ -38,9 +41,32 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  padding: 0 10%;
+  /* color: #2c3e50; */
+  color: #333;
+  width: 960px;
+  margin: auto;
+  /* padding: 0 10%; */
   min-height: 100%;
+  background: #eee;
+  padding: 20px;
+}
+
+@media (min-width: 960px) {
+  #app {
+    width: 960px;
+  }
+}
+
+@media (min-width: 750px) {
+  #app {
+    width: 750px;
+  }
+}
+
+@media (max-width: 749px) {
+  #app {
+    width: 100%;
+  }
 }
 
 .footer {
