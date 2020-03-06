@@ -47,7 +47,7 @@ body {
   margin: auto;
   /* padding: 0 10%; */
   min-height: 100%;
-  background: #eee;
+  /* background: #eee; */
   padding: 20px;
 }
 
