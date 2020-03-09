@@ -60,6 +60,7 @@ export default {
 
 .articles {
   display: flex;
+  padding: 0 20px;
   .article-container {
     margin-right: 5rem;
     flex-basis: 75%;

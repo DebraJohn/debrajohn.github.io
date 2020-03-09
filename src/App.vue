@@ -35,6 +35,7 @@ html,
 body {
   width: 100%;
   height: 100%;
+  /* background: #333; */
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -47,24 +48,27 @@ body {
   margin: auto;
   /* padding: 0 10%; */
   min-height: 100%;
-  /* background: #eee; */
-  padding: 20px;
+  background: #fff;
+  /* padding: 20px; */
 }
 
 @media (min-width: 960px) {
-  #app {
+  #app,
+  .footer {
     width: 960px;
   }
 }
 
 @media (min-width: 750px) {
-  #app {
+  #app,
+  .footer {
     width: 750px;
   }
 }
 
 @media (max-width: 749px) {
-  #app {
+  #app,
+  .footer {
     width: 100%;
   }
 }
@@ -73,7 +77,9 @@ body {
   padding: 0.3rem;
   text-align: center;
   font-size: 12px;
-  color: #2c3e50;
+  color: #333;
+  margin: auto;
+  /* background: #fff; */
 }
 .slide-fade-enter-active {
   transition: all .3s ease;

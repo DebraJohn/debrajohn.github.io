@@ -20,10 +20,19 @@ export default {
 
     }
   },
+  mounted() {
+  },
+  beforeDestory() {
+  },
   methods: {
   }
 };
 </script>
 
-<style>
+<style lang="less">
+@import "~@/assets/styles/common.less";
+
+header {
+  // border-bottom: 1px dashed #333;
+}
 </style>

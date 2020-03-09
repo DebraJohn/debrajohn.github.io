@@ -77,10 +77,11 @@ export default {
 @import "~@/assets/styles/common.less";
 
 .menu_container {
-  padding: 25px 0;
-  // background: #e8f5ff;
-  // background: #fff;
-  // height: 10%;
+  padding: 20px;
+  min-width: 375px;
+  max-width: 450px;
+  margin: auto;
+  // outline: 1px dashed #333;
   &.stick {
     width: 100%;
     position: fixed;
@@ -88,16 +89,15 @@ export default {
     left: 0;
     padding: 1rem 1rem;
     z-index: 2;
-    // border-bottom: 1px solid #eaeaea;
   }
   .menu {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     a {
       font-size: 13px;
       // font-weight: bold;
       color: @font-color;
-      padding: 0 20px;
+      // padding: 0 20px;
       text-align: center;
       text-decoration: none;
       &.router-link-exact-active {
