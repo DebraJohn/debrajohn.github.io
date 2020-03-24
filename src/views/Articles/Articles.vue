@@ -21,11 +21,9 @@
 
 <script>
 import Article from '@/components/Article/Article.vue';
-const { ARTICLE_LIST, TAG_LIST } = require('@/components/Article/articleList')
 import EventBus from '@/core/eventBus';
-// import { category, articleList, articleDetail } from './mock'
 import { formatTime } from '@/core/exc'
-import axios from 'axios'
+import { get } from '@/core/request'
 
 export default {
   name: "articles",
@@ -36,18 +34,13 @@ export default {
     return {
       category: [],
       articleList: [],
-      TAG_LIST,
       stick: false,
       formatTime
     }
   },
   created() {
-    this.getCategory().then(res => {
-      this.category = res.result;
-    })
-    this.getArticleList().then(res => {
-      this.articleList = res.result;
-    })
+    this.getCategory()
+    this.getArticleList()
   },
   mounted() {
     EventBus.$on('stickMenu', data => {
@@ -60,18 +53,14 @@ export default {
     },
     // 获取文集
     getCategory() {
-      return new Promise((resolve, reject) => {
-        axios.get('/article/getCategory')
-        .then(res => resolve(res.data))
-        .catch(reject)
+      get('/article/getCategory').then(res => {
+        this.category = res.result;
       })
     },
     // 获取文章列表
     getArticleList(categoryId) {
-      return new Promise((resolve, reject) => {
-        axios.get('/article/getArticleList', { params: { categoryId } })
-        .then(res => resolve(res.data))
-        .catch(reject)
+      get('/article/getArticleList').then(res => {
+        this.articleList = res.result;
       })
     },
   },

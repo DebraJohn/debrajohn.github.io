@@ -18,7 +18,7 @@
 // @ is an alias to /src
 const { ARTICLE_LIST } = require('./articleList')
 import { isPhone } from '@/core/exc'
-import axios from 'axios'
+import { get } from '@/core/request'
 import markdown from 'markdown-it'
 const md = markdown()
 
@@ -40,9 +40,7 @@ export default {
   },
   methods: {
     findThisArticle(id) {
-      this.getArticleContent(id).then(res => {
-        this.thisArticle = res.result
-      })
+      this.getArticleContent(id)
     },
     scrollToThisArticle(index) {
       this.$refs.articleContent[index].scrollIntoView()
@@ -57,11 +55,7 @@ export default {
     
     // 获取文章内容
     getArticleContent(articleId) {
-      return new Promise((resolve, reject) => {
-        axios.get('/article/getArticleContent', { params: { articleId } })
-        .then(res => resolve(res.data))
-        .catch(reject)
-      })
+      get('/article/getArticleContent', { articleId }).then(res => this.thisArticle = res.result)
     }
   },
   created() {
