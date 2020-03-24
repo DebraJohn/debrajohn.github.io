@@ -8,7 +8,7 @@
     </div>
     <div class="article-container">
       <div class="article-content" ref="articleContent">
-        <div class="content" v-html="thisArticle.content"></div>
+        <div class="content" v-html="md.render(thisArticle)"></div>
       </div>
     </div>
   </div>
@@ -18,9 +18,12 @@
 // @ is an alias to /src
 const { ARTICLE_LIST } = require('./articleList')
 import { isPhone } from '@/core/exc'
+import axios from 'axios'
+import markdown from 'markdown-it'
+const md = markdown()
 
 export default {
-  name: "article",
+  name: "articles",
   components: {
   },
   data() {
@@ -28,7 +31,8 @@ export default {
       ARTICLE_LIST,
       activeIndex: -1,
       showCategoryFlag: false,
-      thisArticle: {}
+      thisArticle: '',
+      md
     }
   },
   props: {
@@ -36,7 +40,9 @@ export default {
   },
   methods: {
     findThisArticle(id) {
-      this.thisArticle = ARTICLE_LIST.find(item => item.id === id)
+      this.getArticleContent(id).then(res => {
+        this.thisArticle = res.result
+      })
     },
     scrollToThisArticle(index) {
       this.$refs.articleContent[index].scrollIntoView()
@@ -47,6 +53,15 @@ export default {
     },
     toThisArticle(articleId) {
       this.$router.push({ name: 'test', params: { testId: articleId }})
+    },
+    
+    // 获取文章内容
+    getArticleContent(articleId) {
+      return new Promise((resolve, reject) => {
+        axios.get('/article/getArticleContent', { params: { articleId } })
+        .then(res => resolve(res.data))
+        .catch(reject)
+      })
     }
   },
   created() {

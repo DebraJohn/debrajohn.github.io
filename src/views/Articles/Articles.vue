@@ -2,10 +2,10 @@
   <div class="articles" :class="stick ? 'stick': ''">
     <!-- <Article :showCategory="true" /> -->
     <div class="article-container">
-      <div class="article-list" v-for="(item, index) in ARTICLE_LIST" :key="index" ref="articleContent">
-        <div class="article-title" @click="toArticleDetail(item.id)">{{item.title}}</div>
-        <span class="article-time">{{item.postTime}}
-          <span class="article-tag" v-for="(tag, i) in item.tag" :key="i">{{tag}}</span>
+      <div class="article-list" v-for="(item, index) in articleList" :key="index" ref="articleContent">
+        <div class="article-title" @click="toArticleDetail(item.articleId)">{{item.articleTitle}}</div>
+        <span class="article-time">{{formatTime(item.publishDate)}}
+          <span class="article-tag">{{item.tag}}</span>
         </span>
       </div>
     </div>
@@ -23,7 +23,9 @@
 import Article from '@/components/Article/Article.vue';
 const { ARTICLE_LIST, TAG_LIST } = require('@/components/Article/articleList')
 import EventBus from '@/core/eventBus';
-import { category, articleList, articleDetail } from './mock'
+// import { category, articleList, articleDetail } from './mock'
+import { formatTime } from '@/core/exc'
+import axios from 'axios'
 
 export default {
   name: "articles",
@@ -32,25 +34,47 @@ export default {
   },
   data() {
     return {
-      category,
-      ARTICLE_LIST,
+      category: [],
+      articleList: [],
       TAG_LIST,
-      stick: false
+      stick: false,
+      formatTime
     }
   },
-  methods: {
-    toArticleDetail(articleId) {
-      this.$router.push({ name: 'article', params: { articleId }})
-    }
-  },
-  created: () => {
-    console.log(category)
+  created() {
+    this.getCategory().then(res => {
+      this.category = res.result;
+    })
+    this.getArticleList().then(res => {
+      this.articleList = res.result;
+    })
   },
   mounted() {
     EventBus.$on('stickMenu', data => {
       this.stick = data
     })
-  }
+  },
+  methods: {
+    toArticleDetail(articleId) {
+      this.$router.push({ name: 'article', params: { articleId }})
+    },
+    // 获取文集
+    getCategory() {
+      return new Promise((resolve, reject) => {
+        axios.get('/article/getCategory')
+        .then(res => resolve(res.data))
+        .catch(reject)
+      })
+    },
+    // 获取文章列表
+    getArticleList(categoryId) {
+      return new Promise((resolve, reject) => {
+        axios.get('/article/getArticleList', { params: { categoryId } })
+        .then(res => resolve(res.data))
+        .catch(reject)
+      })
+    },
+  },
   
 };
 </script>

@@ -36,20 +36,18 @@ body {
   width: 100%;
   height: 100%;
   /* background: #333; */
+  /* background: #e1e2e4; */
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* color: #2c3e50; */
   color: #333;
   width: 960px;
   margin: auto;
-  /* padding: 0 10%; */
   min-height: 100%;
   background: #fff;
-  /* padding: 20px; */
 }
 
 @media (min-width: 960px) {
