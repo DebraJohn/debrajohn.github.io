@@ -1,17 +1,31 @@
 <template>
   <div class="articles" :class="stick ? 'stick': ''">
     <!-- <Article :showCategory="true" /> -->
+    <div class="breadcrumb" v-if="currentCategory" @click="toCategory()">
+      <a-icon type="arrow-left" />
+    </div>
     <div class="article-container">
       <div class="article-list" v-for="(item, index) in articleList" :key="index" ref="articleContent">
-        <div class="article-title" @click="toArticleDetail(item.articleId)">{{item.articleTitle}}</div>
+        <div class="article-title" @click="toArticleDetail(item.articleId)">{{item.articleTitle}}<span class="subTitle" v-if="item.subTitle">{{item.subTitle}}</span></div>
         <span class="article-time">{{formatTime(item.publishDate)}}
-          <span class="article-tag">{{item.tag}}</span>
+          <span class="article-tag" @click="toCategory(item.articleId.substr(0, 2))">
+            <a-icon type="tag"></a-icon>
+            <span>{{item.tag}}</span>
+          </span>
         </span>
       </div>
     </div>
     <div class="category">
       <div class="categoryTitle">我的记本</div>
-      <div class="categoryItem" v-for="(item, index) in category" :key="index">
+      <div class="categoryItem" :class="!currentCategory ? 'active' : ''" @click="toCategory()">
+        <a-icon type="folder" />
+        <span>全部</span>
+      </div>
+      <div class="categoryItem" 
+          :class="currentCategory == item.categoryId ? 'active' : ''"
+          v-for="(item, index) in category"
+          :key="index"
+          @click="toCategory(item.categoryId)">
         <a-icon type="book" />
         <span>{{item.categoryTitle}}</span>
       </div>
@@ -35,7 +49,8 @@ export default {
       category: [],
       articleList: [],
       stick: false,
-      formatTime
+      formatTime,
+      currentCategory: undefined
     }
   },
   created() {
@@ -59,10 +74,15 @@ export default {
     },
     // 获取文章列表
     getArticleList(categoryId) {
-      get('/article/getArticleList').then(res => {
+      get('/article/getArticleList', { categoryId }).then(res => {
+        this.currentCategory = categoryId
         this.articleList = res.result;
       })
     },
+    toCategory(id) {
+      if (this.currentCategory === id) return
+      this.getArticleList(id)
+    }
   },
   
 };
@@ -74,12 +94,15 @@ export default {
 .articles {
   display: flex;
   padding: 0 20px;
+  .breadcrumb {
+    display: none;
+  }
   .article-container {
     margin-right: 5rem;
     flex-basis: 75%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
     font-size: 13px;
     &.stick {
       margin-top: 160px;
@@ -89,23 +112,40 @@ export default {
       border-bottom: 2px solid #eaeaea;
       padding: 1rem 0;
       .article-title {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         margin-bottom: 0.5rem;
+        .subTitle {
+          font-size: 12px;
+          color: #555;
+        }
         &:hover {
-          color: @theme-color;
-          cursor: pointer;
+          &,
+          .subTitle{
+            color: @theme-color;
+            cursor: pointer;
+          }
         }
       }
       .article-time {
         font-size: 12px;
       }
       .article-tag {
-        background-color: @theme-color;
-        color: #fff;
-        padding: 0.2rem;
-        margin: 0.2rem;
-        border-radius: 0.5rem;
+        // background-color: @theme-color;
+        // color: @theme-color;
+        // padding: 2px 4px;
+        margin: 10px;
+        border-radius: 5px;
+        text-decoration: underline;
+        i {
+          position: relative;
+          top: 2px;
+          margin-right: 3px;
+        }
+        &:hover {
+          color: @theme-color;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -129,11 +169,39 @@ export default {
         margin-right: 0.5rem;
         font-size: 16px;
       }
-      &:hover {
+      &:hover,
+      &.active {
         cursor: pointer;
         color: @theme-color;
         font-weight: bold;
       }
+    }
+  }
+  
+
+  @media (max-width: 749px) {
+    .breadcrumb {
+      position: fixed;
+      top: 248px;
+      right: 20px;
+      display: block;
+      background: @theme-color;
+      font-size: 17px;
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      line-height: 35px;
+      box-shadow: 2px 1px 3px 0px #999;
+      transition: all 0.3s ease;
+    }
+    .category {
+      display: none;
+    }
+    .article-container {
+      flex-basis: 100%;
+      // margin-top: 20px;
+      margin-right: 0;
     }
   }
 }
