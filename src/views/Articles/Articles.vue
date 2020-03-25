@@ -1,6 +1,5 @@
 <template>
-  <div class="articles" :class="stick ? 'stick': ''">
-    <!-- <Article :showCategory="true" /> -->
+  <div class="articles">
     <div class="breadcrumb" v-if="currentCategory" @click="toCategory()">
       <a-icon type="arrow-left" />
     </div>
@@ -34,21 +33,20 @@
 </template>
 
 <script>
-import Article from '@/components/Article/Article.vue';
-import EventBus from '@/core/eventBus';
+// import EventBus from '@/core/eventBus';
 import { formatTime } from '@/core/exc'
 import { get } from '@/core/request'
 
 export default {
   name: "articles",
   components: {
-    Article
+    
   },
   data() {
     return {
       category: [],
-      articleList: [],
-      stick: false,
+      articleList: [], // 要显示的数据
+      receivedData: [], // 储存接口获取的所有文集数据
       formatTime,
       currentCategory: undefined
     }
@@ -58,9 +56,9 @@ export default {
     this.getArticleList()
   },
   mounted() {
-    EventBus.$on('stickMenu', data => {
-      this.stick = data
-    })
+    // EventBus.$on('stickMenu', data => {
+    //   this.stick = data
+    // })
   },
   methods: {
     toArticleDetail(articleId) {
@@ -74,9 +72,15 @@ export default {
     },
     // 获取文章列表
     getArticleList(categoryId) {
+      if (this.receivedData && this.receivedData.length) {
+        // 切换category不用一直调用接口
+        this.articleList = categoryId ? this.receivedData.filter(item => item.articleId.substr(0, 2) === categoryId) : this.receivedData
+        this.currentCategory = categoryId
+        return
+      } 
       get('/article/getArticleList', { categoryId }).then(res => {
         this.currentCategory = categoryId
-        this.articleList = res.result;
+        this.articleList = this.receivedData = res.result;
       })
     },
     toCategory(id) {
@@ -104,9 +108,9 @@ export default {
     flex-direction: column;
     // justify-content: center;
     font-size: 13px;
-    &.stick {
-      margin-top: 160px;
-    }
+    // &.stick {
+    //   margin-top: 160px;
+    // }
     .article-list {
       text-align: left;
       border-bottom: 2px solid #eaeaea;

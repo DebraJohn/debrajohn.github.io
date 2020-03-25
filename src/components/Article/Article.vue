@@ -1,24 +1,18 @@
 <template>
   <div class="article">
-    <div v-if="showCategory" class="category" :class="showCategoryFlag && 'show'">
-      <div class="category-trigger"></div>
-      <div class="category-item title">文章目录</div>
-      <div class="category-item item" v-for="(item, index) in article" :key="index"
-        @click="toThisArticle(item.id)">{{item.title}}</div>
-    </div>
     <div class="article-container">
       <div class="article-content" ref="articleContent">
-        <div class="content" v-html="md.render(thisArticle)"></div>
+        <div class="title">{{articleData.articleTitle}}</div>
+        <div class="subTitle">{{formatTime(articleData.publishDate)}} {{articleData.subTitle}}</div>
+        <div class="content" v-html="md.render(articleData.content || '')"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-const { ARTICLE_LIST } = require('./articleList')
-import { isPhone } from '@/core/exc'
 import { get } from '@/core/request'
+import { formatTime } from '@/core/exc'
 import markdown from 'markdown-it'
 const md = markdown()
 
@@ -28,45 +22,31 @@ export default {
   },
   data() {
     return {
-      ARTICLE_LIST,
-      activeIndex: -1,
-      showCategoryFlag: false,
-      thisArticle: '',
-      md
+      articleData: {},
+      md,
+      formatTime
     }
   },
   props: {
-    showCategory: Boolean
   },
   methods: {
-    findThisArticle(id) {
-      this.getArticleContent(id)
-    },
-    scrollToThisArticle(index) {
-      this.$refs.articleContent[index].scrollIntoView()
-    },
-    handleTouch(e) {
-      if(!isPhone()) return
-      this.showCategoryFlag = e.target.className.indexOf('category') > -1
-    },
-    toThisArticle(articleId) {
-      this.$router.push({ name: 'test', params: { testId: articleId }})
-    },
-    
     // 获取文章内容
     getArticleContent(articleId) {
-      get('/article/getArticleContent', { articleId }).then(res => this.thisArticle = res.result)
+      get('/article/getArticleContent', { articleId }).then(res => {
+        this.articleData = res.result
+        setTimeout(() => {
+          window.scrollTo(0, 232)
+        }, 200)
+      })
     }
-  },
+  }, 
   created() {
     // console.log(ARTICLE_LIST)
   },
   mounted() {
-    this.findThisArticle(this.$route.params.articleId)
-    document.querySelector('#app').addEventListener('click', this.handleTouch, true)
+    this.getArticleContent(this.$route.params.articleId)
   },
   beforeDestroy() {
-    document.querySelector('#app').removeEventListener('touch', this.handleTouch, true)
   },
   
 };
@@ -128,7 +108,21 @@ export default {
     }
   }
   .article-content {
+    position: relative;
     margin-bottom: 5rem;
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+    .subTitle {
+      font-size: 12px;
+      // margin-top: -5px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eaeaea;
+      color: #777;
+    }
     .content {
       &.ellipsis {
         height: 25rem;

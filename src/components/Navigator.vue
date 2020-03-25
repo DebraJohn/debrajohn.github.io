@@ -17,8 +17,12 @@ export default {
   },
   data() {
     return {
-
     }
+  },
+  computed: {
+    // hideProfile() { // 隐藏头像
+    //   return this.$route.path.split('/').length > 2
+    // }
   },
   mounted() {
   },
