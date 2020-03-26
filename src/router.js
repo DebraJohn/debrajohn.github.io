@@ -40,8 +40,8 @@ export default new Router({
     },
     {
       path: '/articles/:articleId',
-      name: 'article',
-      component: () => import('./components/Article/Article.vue')
+      name: 'articleContent',
+      component: () => import('./views/Articles/Content.vue')
     }
   ]
 })

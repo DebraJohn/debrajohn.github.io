@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     toArticleDetail(articleId) {
-      this.$router.push({ name: 'article', params: { articleId }})
+      this.$router.push({ name: 'articleContent', params: { articleId }})
     },
     // 获取文集
     getCategory() {

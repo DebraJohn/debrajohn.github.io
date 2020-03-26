@@ -17,7 +17,7 @@ import markdown from 'markdown-it'
 const md = markdown()
 
 export default {
-  name: "articles",
+  name: "articleContent",
   components: {
   },
   data() {
