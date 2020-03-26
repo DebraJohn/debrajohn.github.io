@@ -4,20 +4,24 @@
     <transition name="slide-fade" mode="out-in">
       <router-view/>
     </transition>
+    <Guide />
   </div>
 </template>
 
 <script>
+import './config/variables'
 import Navigator from "@/components/Navigator.vue";
 import '@/assets/styles/markdown.less'
 import { Icon } from 'ant-design-vue'
+import Guide from '@/components/Guide'
 import Vue from "vue";
 Vue.use(Icon)
 
 export default {
   name: "home",
   components: {
-    Navigator
+    Navigator,
+    Guide
   }
 };
 </script>

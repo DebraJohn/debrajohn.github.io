@@ -13,9 +13,6 @@ export default {
     return {
       Avatar
     }
-  },
-  props: {
-    msg: String
   }
 };
 </script>
@@ -24,8 +21,6 @@ export default {
 .profile {
   width: 100%;
   padding: 15px 0;
-  // height: 30rem;
-  // border: 1px solid black;
   .avatar {
     width: 75px;
     height: 75px;

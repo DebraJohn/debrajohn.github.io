@@ -40,7 +40,7 @@ import { get } from '@/core/request'
 export default {
   name: "articles",
   components: {
-    
+
   },
   data() {
     return {
