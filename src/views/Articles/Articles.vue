@@ -1,9 +1,10 @@
 <template>
   <div class="articles">
-    <div class="breadcrumb" v-if="currentCategory" @click="toCategory()">
+    <!-- <div class="breadcrumb" v-if="currentCategory" @click="toCategory()">
       <a-icon type="arrow-left" />
-    </div>
+    </div> -->
     <div class="article-container">
+      <div class="seeAll" v-if="receivedData && currentCategory" @click="toCategory()">查看全部</div>
       <div class="article-list" v-for="(item, index) in articleList" :key="index" ref="articleContent">
         <div class="article-title" @click="toArticleDetail(item.articleId)">{{item.articleTitle}}<span class="subTitle" v-if="item.subTitle">{{item.subTitle}}</span></div>
         <span class="article-time">{{formatTime(item.publishDate)}}
@@ -51,9 +52,11 @@ export default {
       currentCategory: undefined
     }
   },
+  watch: {
+  },
   created() {
     this.getCategory()
-    this.getArticleList()
+    this.getArticleList(this.$route.params.categoryId)
   },
   mounted() {
     // EventBus.$on('stickMenu', data => {
@@ -74,14 +77,17 @@ export default {
     getArticleList(categoryId) {
       if (this.receivedData && this.receivedData.length) {
         // 切换category不用一直调用接口
-        this.articleList = categoryId ? this.receivedData.filter(item => item.articleId.substr(0, 2) === categoryId) : this.receivedData
-        this.currentCategory = categoryId
+        this.setArticleList(categoryId)
         return
       } 
-      get('/article/getArticleList', { categoryId }).then(res => {
-        this.currentCategory = categoryId
-        this.articleList = this.receivedData = res.result;
+      get('/article/getArticleList').then(res => {
+        this.receivedData = res.result;
+        this.setArticleList(categoryId)
       })
+    },
+    setArticleList(categoryId) {
+        this.currentCategory = categoryId
+        this.articleList = categoryId ? this.receivedData.filter(item => item.articleId.substr(0, 2) === categoryId) : this.receivedData
     },
     toCategory(id) {
       if (this.currentCategory === id) return
@@ -98,7 +104,7 @@ export default {
 .articles {
   display: flex;
   padding: 0 20px;
-  .breadcrumb {
+  .seeAll {
     display: none;
   }
   .article-container {
@@ -140,11 +146,12 @@ export default {
         // padding: 2px 4px;
         margin: 10px;
         border-radius: 5px;
+        color: #555;
         text-decoration: underline;
         i {
           position: relative;
           top: 2px;
-          margin-right: 3px;
+          margin-right: 5px;
         }
         &:hover {
           color: @theme-color;
@@ -184,20 +191,10 @@ export default {
   
 
   @media (max-width: 749px) {
-    .breadcrumb {
-      position: fixed;
-      top: 248px;
-      right: 20px;
+    .seeAll {
       display: block;
-      background: @theme-color;
-      font-size: 17px;
-      color: #fff;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      line-height: 35px;
-      box-shadow: 2px 1px 3px 0px #999;
-      transition: all 0.3s ease;
+      text-decoration: underline;
+      color: #555;
     }
     .category {
       display: none;

@@ -1,11 +1,11 @@
 <template>
   <div class="menu_container" :class="stick ? 'stick': ''" ref="menu_container">
     <div class="menu">
-      <router-link to="/" class="_home_"><a-icon type="home" />Home</router-link>
-      <router-link to="/music" title="Songs I wrote." class="_music_"><a-icon type="customer-service" />Music</router-link>
-      <router-link to="/articles" title="Things I saw." class="_articles_"><a-icon type="file-text" />Articles</router-link>
-      <router-link to="/projects" title="Projects I build." class="_projects_"><a-icon type="project" />Projects</router-link>
-      <router-link to="/about" title="Who I am." class="_about_"><a-icon type="user" />About</router-link>
+      <router-link to="/" class="_home_"><a-icon type="home" />首页</router-link>
+      <router-link to="/music" title="Songs I wrote." class="_music_"><a-icon type="customer-service" />音乐</router-link>
+      <router-link to="/articles" title="Things I saw." class="_articles_"><a-icon type="file-text" />文集</router-link>
+      <router-link to="/projects" title="Projects I build." class="_projects_"><a-icon type="project" />项目</router-link>
+      <router-link to="/about" title="Who I am." class="_about_"><a-icon type="user" />关于</router-link>
     </div>
   </div>
 </template>

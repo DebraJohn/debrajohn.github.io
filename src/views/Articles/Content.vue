@@ -3,7 +3,14 @@
     <div class="article-container" v-show="articleData">
       <div class="article-content" ref="articleContent">
         <div class="title">{{articleData.articleTitle}}</div>
-        <div class="subTitle">{{formatTime(articleData.publishDate)}} {{articleData.subTitle}}</div>
+        <div class="subTitle">{{articleData.subTitle}}</div>
+        <div class="timeLine">
+          <span>{{formatTime(articleData.publishDate)}}</span>
+          <span class="tag" @click="$router.push({ name: 'articles', params: { categoryId: articleData.articleId.substr(0, 2) }})">
+            <a-icon type="tag"></a-icon>
+            文集《 {{articleData.tag}} 》
+          </span>
+        </div>
         <div class="content" v-html="md.render(articleData.content || '')"></div>
       </div>
     </div>
@@ -54,6 +61,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "~@/assets/styles/common.less";
 .article {
   width: 100%;
   padding: 0 20px;
@@ -118,11 +126,29 @@ export default {
     }
     .subTitle {
       font-size: 12px;
-      // margin-top: -5px;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #eaeaea;
+      margin-top: -5px;
+      margin-bottom: 10px;
       color: #777;
+    }
+    .timeLine {
+      color: #777;
+      border-bottom: 2px solid #eaeaea;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .tag {
+      font-weight: 700;
+      margin-left: 10px;
+      color: @theme-color;
+      i {
+        position: relative;
+        top: 2px;
+      }
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
     .content {
       &.ellipsis {

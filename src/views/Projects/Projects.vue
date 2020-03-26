@@ -34,16 +34,17 @@ export default {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  padding: 0 20px;
   .item {
     display: flex;
-    margin: 2rem 0;
+    margin: 20px 0;
     width: 15rem;
     &:hover {
       cursor: pointer;
     }
     & > img {
-      width: 5rem;
-      height: 5rem;
+      width: 40px;
+      height: 40px;
     }
     .right-content {
       align-self: center;

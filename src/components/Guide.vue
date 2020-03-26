@@ -1,5 +1,5 @@
 <template>
-  <div class="guide" v-if="isShown" @click="backToTop()">
+  <div class="guide" v-if="isShown" @click="backToTop()" title="回到顶部">
     <a-icon type="arrow-up" />
   </div>
 </template>
@@ -12,8 +12,9 @@ export default {
       isShown: false,
       scrollPos: 0,
       scrollTimer: null,
-      rate: 250,
-      speed: 40
+      T: 250, // 多少ms内滚完
+      speed: 40, // 每10ms滚动的px,
+      gap: 10 // 定时器循环间隔
     }
   },
   props: {
@@ -32,7 +33,7 @@ export default {
     backToTop() {
       clearTimeout(this.scrollTimer)
       this.scrollPos = this.getScrollTop();
-      this.speed = this.scrollPos / this.rate * 10
+      this.speed = this.scrollPos / this.T * this.gap
       this.scrollToTop()
     },
     getScrollTop() {
@@ -40,7 +41,7 @@ export default {
     },
     scrollToTop() {
       this.scrollTimer = setTimeout(() => {
-        if (this.scrollPos >= 10) {
+        if (this.scrollPos >= this.speed) {
           this.scrollPos -= this.speed
           window.scrollTo(0, this.scrollPos)
           this.scrollToTop()
@@ -49,7 +50,7 @@ export default {
           window.scrollTo(0, this.scrollPos)
           clearTimeout(this.scrollTimer)
         }
-      }, 10)
+      }, this.gap)
     }
   }
 };
@@ -59,15 +60,19 @@ export default {
 @import "~@/assets/styles/common.less";
 .guide {
   position: fixed;
-  bottom: 20px;
+  bottom: 40px;
   right: 20px;
   background: @theme-color;
+  border-radius: 5px;
   font-size: 17px;
   color: #fff;
   width: 45px;
   height: 45px;
   box-shadow: 2px 1px 3px 0px #999;
-  transition: all 0.3s ease;
+  font-size: 20px;
+  &:hover {
+    cursor: pointer;
+  }
   i {
     display: flex;
     justify-content: center;
