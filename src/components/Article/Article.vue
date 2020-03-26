@@ -1,6 +1,6 @@
 <template>
   <div class="article">
-    <div class="article-container">
+    <div class="article-container" v-show="articleData">
       <div class="article-content" ref="articleContent">
         <div class="title">{{articleData.articleTitle}}</div>
         <div class="subTitle">{{formatTime(articleData.publishDate)}} {{articleData.subTitle}}</div>
@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      articleData: {},
+      articleData: '',
       md,
       formatTime
     }
@@ -35,13 +35,14 @@ export default {
       get('/article/getArticleContent', { articleId }).then(res => {
         this.articleData = res.result
         setTimeout(() => {
-          window.scrollTo(0, 232)
+          if (this.$refs.articleContent.clientHeight >= document.documentElement.clientHeight) {
+            window.scrollTo(0, 232)
+          }
         }, 200)
       })
     }
   }, 
   created() {
-    // console.log(ARTICLE_LIST)
   },
   mounted() {
     this.getArticleContent(this.$route.params.articleId)
