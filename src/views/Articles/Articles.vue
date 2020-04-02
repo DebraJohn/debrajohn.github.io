@@ -30,6 +30,7 @@
         <span>{{item.categoryTitle}}</span>
       </div>
     </div>
+    <Loading v-if="showLoading" />
   </div>
 </template>
 
@@ -37,11 +38,12 @@
 // import EventBus from '@/core/eventBus';
 import { formatTime } from '@/core/exc'
 import { get } from '@/core/request'
+import Loading from '@/components/Loading.vue'
 
 export default {
   name: "articles",
   components: {
-
+    Loading
   },
   data() {
     return {
@@ -49,7 +51,8 @@ export default {
       articleList: [], // 要显示的数据
       receivedData: [], // 储存接口获取的所有文集数据
       formatTime,
-      currentCategory: undefined
+      currentCategory: undefined,
+      showLoading: false
     }
   },
   watch: {
@@ -57,6 +60,9 @@ export default {
   created() {
     this.getCategory()
     this.getArticleList(this.$route.params.categoryId)
+  },
+  beforeMount() {
+    this.showLoading = true
   },
   mounted() {
     // EventBus.$on('stickMenu', data => {
@@ -79,11 +85,13 @@ export default {
         // 切换category不用一直调用接口
         this.setArticleList(categoryId)
         return
-      } 
+      }
+      this.showLoading = true
       get('/article/getArticleList').then(res => {
         this.receivedData = res.result;
         this.setArticleList(categoryId)
-      })
+        this.showLoading = false
+      }).catch(() => this.showLoading = false)
     },
     setArticleList(categoryId) {
         this.currentCategory = categoryId
@@ -102,8 +110,10 @@ export default {
 @import "~@/assets/styles/common.less";
 
 .articles {
+  position: relative;
   display: flex;
   padding: 0 20px;
+  min-height: 300px;
   .seeAll {
     display: none;
   }

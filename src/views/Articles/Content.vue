@@ -14,24 +14,28 @@
         <div class="content" v-html="md.render(articleData.content || '')"></div>
       </div>
     </div>
+    <Loading v-if="showLoading" />
   </div>
 </template>
 
 <script>
 import { get } from '@/core/request'
 import { formatTime } from '@/core/exc'
+import Loading from '@/components/Loading.vue'
 import markdown from 'markdown-it'
 const md = markdown()
 
 export default {
   name: "articleContent",
   components: {
+    Loading
   },
   data() {
     return {
       articleData: '',
       md,
-      formatTime
+      formatTime,
+      showLoading: false
     }
   },
   props: {
@@ -41,18 +45,22 @@ export default {
     getArticleContent(articleId) {
       get('/article/getArticleContent', { articleId }).then(res => {
         this.articleData = res.result
+        this.showLoading = false
         setTimeout(() => {
           if (this.$refs.articleContent.clientHeight >= document.documentElement.clientHeight) {
             window.scrollTo(0, 232)
           }
         }, 200)
-      })
+      }).catch(() => this.showLoading = false)
     }
   }, 
   created() {
+    this.getArticleContent(this.$route.params.articleId)
+  },
+  beforeMount() {
+    this.showLoading = true
   },
   mounted() {
-    this.getArticleContent(this.$route.params.articleId)
   },
   beforeDestroy() {
   },
@@ -63,6 +71,7 @@ export default {
 <style lang="less" scoped>
 @import "~@/assets/styles/common.less";
 .article {
+  position: relative;
   width: 100%;
   padding: 0 20px;
   .category {
@@ -120,9 +129,9 @@ export default {
     position: relative;
     margin-bottom: 5rem;
     .title {
-      font-size: 20px;
+      font-size: 1.5rem;
       font-weight: 700;
-      margin: 10px 0;
+      margin: 20px 0;
     }
     .subTitle {
       font-size: 12px;
