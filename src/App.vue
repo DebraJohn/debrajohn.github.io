@@ -56,26 +56,26 @@ body {
 
 @media (min-width: 960px) {
   #app,
-  .footer {
+  footer {
     width: 960px;
   }
 }
 
 @media (min-width: 750px) {
   #app,
-  .footer {
+  footer {
     width: 750px;
   }
 }
 
 @media (max-width: 749px) {
   #app,
-  .footer {
+  footer {
     width: 100%;
   }
 }
 
-.footer {
+footer {
   padding: 0.3rem;
   text-align: center;
   font-size: 12px;
