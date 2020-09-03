@@ -88,7 +88,7 @@ export default {
       }
       this.showLoading = true
       get('/article/getArticleList').then(res => {
-        this.receivedData = res.result;
+        this.receivedData = res.result.sort((a, b) => b.publishDate - a.publishDate);
         this.setArticleList(categoryId)
         this.showLoading = false
       }).catch(() => this.showLoading = false)
