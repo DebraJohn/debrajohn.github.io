@@ -1,7 +1,9 @@
 <template>
   <header>
-    <Profile/>
-    <Menu/>
+    <div class="header-container">
+      <Profile/>
+      <Menu/>
+    </div>
   </header>
 </template>
 
@@ -37,6 +39,18 @@ export default {
 @import "~@/assets/styles/common.less";
 
 header {
-  // border-bottom: 1px dashed #333;
+  width: 100%;
+  // border-bottom: 2px dashed #ccc;
+  box-shadow: 0px 4px 5px #eee;
+  // background: #bbb;
+  height: 100px;
+  .header-container {
+    margin: auto;
+    width: 1080px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 </style>

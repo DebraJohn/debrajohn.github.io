@@ -129,8 +129,8 @@ export default {
     // }
     .article-list {
       text-align: left;
-      border-bottom: 2px solid #eaeaea;
-      padding: 1rem 0;
+      border-bottom: 2px dashed #eaeaea;
+      padding: 20px 0;
       .article-title {
         font-size: 16px;
         font-weight: bold;
@@ -180,7 +180,7 @@ export default {
       font-size: 14px;
       margin-bottom: 1rem;
       padding-bottom: 0.5rem;
-      border-bottom: 2px solid #eaeaea;
+      border-bottom: 2px dashed #eaeaea;
     }
     .categoryItem {
       font-size: 14px;
@@ -200,7 +200,7 @@ export default {
   }
   
 
-  @media (max-width: 749px) {
+  @media (max-width: 720px) {
     .seeAll {
       display: block;
       text-decoration: underline;

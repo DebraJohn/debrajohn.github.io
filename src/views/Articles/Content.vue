@@ -46,11 +46,11 @@ export default {
       get('/article/getArticleContent', { articleId }).then(res => {
         this.articleData = res.result
         this.showLoading = false
-        setTimeout(() => {
-          if (this.$refs.articleContent.clientHeight >= document.documentElement.clientHeight) {
-            window.scrollTo(0, 232)
-          }
-        }, 200)
+        // setTimeout(() => {
+        //   if (this.$refs.articleContent.clientHeight >= document.documentElement.clientHeight) {
+        //     window.scrollTo(0, 232)
+        //   }
+        // }, 200)
       }).catch(() => this.showLoading = false)
     }
   }, 
@@ -129,8 +129,8 @@ export default {
     position: relative;
     margin-bottom: 5rem;
     .title {
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 1.8rem;
+      font-weight: 500;
       margin: 20px 0;
     }
     .subTitle {
@@ -141,9 +141,8 @@ export default {
     }
     .timeLine {
       color: #777;
-      border-bottom: 2px solid #eaeaea;
       padding-bottom: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
     
     .tag {

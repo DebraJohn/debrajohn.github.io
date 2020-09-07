@@ -1,12 +1,15 @@
 <template>
   <div class="profile">
     <div class="avatar"><img :src=Avatar alt=""></div>
-    <div class="userName">DebraJohn</div>
+    <div class="siteName">
+      <div class="chiName">呓语鲸人</div>
+      <div class="engName">Whalsper</div>
+    </div>
   </div>
 </template>
 
 <script>
-import Avatar from '@/assets/images/avatar.jpg';
+import Avatar from '@/assets/images/favicon.png';
 export default {
   name: "Profile",
   data() {
@@ -19,23 +22,33 @@ export default {
 
 <style lang="less" scoped>
 .profile {
-  width: 100%;
-  padding: 15px 0;
+  padding: 0 20px;
+  display: flex;
   .avatar {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: auto;
+    width: 60px;
+    height: 60px;
     img {
       width: 100%;
       height: 100%;
     }
   }
-  .userName {
-    font-size: 15px;
-    font-weight: bold;
-    margin: 15px 0;
+  .siteName {
+    margin: 10px;
+    text-align: right;
+    .chiName {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 3px 0;
+    }
+    .engName {
+      font-size: 13px;
+      color: #555;
+    }
+  }
+  @media (max-width: 550px) {
+    .siteName {
+      display: none;
+    }
   }
 }
 </style>

@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <Navigator/>
-    <transition name="slide-fade" mode="out-in">
-      <router-view/>
-    </transition>
+    <div class="container">
+      <transition name="slide-fade" mode="out-in">
+        <router-view/>
+      </transition>
+    </div>
     <Guide />
   </div>
 </template>
@@ -48,28 +50,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #333;
-  width: 960px;
-  margin: auto;
   min-height: 100%;
   background: #fff;
 }
-
-@media (min-width: 960px) {
-  #app,
-  footer {
-    width: 960px;
-  }
+.container {
+  width: 1080px;
+  margin: 20px auto;
 }
 
-@media (min-width: 750px) {
-  #app,
-  footer {
-    width: 750px;
-  }
-}
-
-@media (max-width: 749px) {
-  #app,
+@media (max-width: 1080px) {
+ .container,
+  header .header-container,
   footer {
     width: 100%;
   }

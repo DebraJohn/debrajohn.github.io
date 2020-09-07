@@ -74,10 +74,8 @@ export default {
 @import "~@/assets/styles/common.less";
 
 .menu_container {
-  padding: 20px;
-  min-width: 375px;
-  max-width: 450px;
-  margin: auto;
+  min-width: 250px;
+  padding: 0 20px 0 0;
   // outline: 1px dashed #333;
   &.stick {
     width: 100%;
@@ -139,6 +137,11 @@ export default {
     color: #fff;
     line-height: 2.5rem;
     text-align: center;
+  }
+  @media (min-width: 500px) {
+    .menu a {
+      margin-left: 40px;
+    }
   }
 }
 </style>
