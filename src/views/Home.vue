@@ -9,9 +9,10 @@
       <div class="contact-me">email: nihaozzihui@163.com</div>
       <div>......</div>
       <div>Not finished yet</div>
-    </div> -->
-    <!-- <div class="card"></div>
+    </div>
+    <div class="card"></div>
     <div class="card"></div> -->
+    <div class="borad article"></div>
   </div>
 </template>
 
@@ -45,12 +46,19 @@ export default {
 
 .home {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   font-size: 13px;
   &.stick {
     margin-top: 160px;
   }
   // width: 900px;
+  .borad {
+    background: #f1f5ff;
+    &.article {
+      width: 70%;
+      height: 500px;
+    }
+  }
   .card {
     // flex: 1;
     width: 300px;

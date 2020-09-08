@@ -73,7 +73,6 @@ export default {
 .article {
   position: relative;
   width: 100%;
-  padding: 0 20px;
   .category {
     position: fixed;
     left: -15rem;

@@ -112,7 +112,6 @@ export default {
 .articles {
   position: relative;
   display: flex;
-  padding: 0 20px;
   min-height: 300px;
   .seeAll {
     display: none;
