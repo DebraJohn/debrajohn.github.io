@@ -37,7 +37,6 @@
 <script>
 // import EventBus from '@/core/eventBus';
 import { formatTime } from '@/core/exc'
-import { get } from '@/core/request'
 import Loading from '@/components/Loading.vue'
 
 export default {
@@ -75,7 +74,7 @@ export default {
     },
     // 获取文集
     getCategory() {
-      get('/article/getCategory').then(res => {
+      API.getCategory().then(res => {
         this.category = res.result;
       })
     },
@@ -87,7 +86,7 @@ export default {
         return
       }
       this.showLoading = true
-      get('/article/getArticleList').then(res => {
+      API.getArticleList().then(res => {
         this.receivedData = res.result.sort((a, b) => b.publishDate - a.publishDate);
         this.setArticleList(categoryId)
         this.showLoading = false

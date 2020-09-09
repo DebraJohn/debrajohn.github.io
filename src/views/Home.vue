@@ -28,14 +28,20 @@ export default {
       stick: false
     }
   },
-  methods: {
-  },
-  created: function() {
+  created() {
+    this.getArticleList()
   },
   mounted() {
     EventBus.$on('stickMenu', data => {
       this.stick = data
     })
+  },
+  methods: {
+    getArticleList() {
+       API.getArticleList().then(r => {
+         console.log(r)
+       })
+    },
   }
   
 };

@@ -1,11 +1,11 @@
 <template>
-  <div class="profile">
+  <router-link to="/" class="profile">
     <div class="avatar"><img :src=Avatar alt=""></div>
     <div class="siteName">
       <div class="chiName">呓语鲸人</div>
       <div class="engName">Whalsper</div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -24,6 +24,8 @@ export default {
 .profile {
   padding: 0 20px;
   display: flex;
+  text-decoration: none;
+  color: #333;
   .avatar {
     width: 60px;
     height: 60px;

@@ -74,7 +74,7 @@ export default {
 @import "~@/assets/styles/common.less";
 
 .menu_container {
-  min-width: 250px;
+  min-width: 220px;
   padding: 0 20px 0 0;
   // outline: 1px dashed #333;
   &.stick {

@@ -62,7 +62,7 @@ export default {
 
 <style lang="less" scope>
 .about {
-  padding: 0 20px;
+  // padding: 0 20px;
   .aboutMe {
     text-align: left;
     .title {
