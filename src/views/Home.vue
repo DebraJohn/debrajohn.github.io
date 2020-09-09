@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getArticleList() {
-       API.getArticleList().then(r => {
+       API.getRecommendedArticle().then(r => {
          console.log(r)
        })
     },

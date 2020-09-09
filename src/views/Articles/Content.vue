@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { get } from '@/core/request'
 import { formatTime } from '@/core/exc'
 import Loading from '@/components/Loading.vue'
 import markdown from 'markdown-it'
@@ -43,7 +42,7 @@ export default {
   methods: {
     // 获取文章内容
     getArticleContent(articleId) {
-      get('/article/getArticleContent', { articleId }).then(res => {
+      API.getArticleContent({ articleId }).then(res => {
         this.articleData = res.result
         this.showLoading = false
         // setTimeout(() => {
