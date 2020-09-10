@@ -1,19 +1,8 @@
 <template>
   <div class="articles">
-    <!-- <div class="breadcrumb" v-if="currentCategory" @click="toCategory()">
-      <a-icon type="arrow-left" />
-    </div> -->
     <div class="article-container">
       <div class="seeAll" v-if="receivedData && currentCategory" @click="toCategory()">查看全部</div>
-      <div class="article-list" v-for="(item, index) in articleList" :key="index" ref="articleContent">
-        <div class="article-title" @click="toArticleDetail(item.articleId)">{{item.articleTitle}}<span class="subTitle" v-if="item.subTitle">{{item.subTitle}}</span></div>
-        <span class="article-time">{{formatTime(item.publishDate)}}
-          <span class="article-tag" @click="toCategory(item.articleId.substr(0, 2))">
-            <a-icon type="tag"></a-icon>
-            <span>{{item.tag}}</span>
-          </span>
-        </span>
-      </div>
+      <ArticleList :articleListData="articleList" @switchCategory="getArticleList" />
     </div>
     <div class="category">
       <div class="categoryTitle">我的记本</div>
@@ -35,14 +24,15 @@
 </template>
 
 <script>
-// import EventBus from '@/core/eventBus';
 import { formatTime } from '@/core/exc'
 import Loading from '@/components/Loading.vue'
+import ArticleList from '@/components/ArticleList.vue'
 
 export default {
   name: "articles",
   components: {
-    Loading
+    Loading,
+    ArticleList
   },
   data() {
     return {
@@ -64,9 +54,6 @@ export default {
     this.showLoading = true
   },
   mounted() {
-    // EventBus.$on('stickMenu', data => {
-    //   this.stick = data
-    // })
   },
   methods: {
     toArticleDetail(articleId) {
@@ -120,53 +107,7 @@ export default {
     flex-basis: 75%;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     font-size: 13px;
-    // &.stick {
-    //   margin-top: 160px;
-    // }
-    .article-list {
-      text-align: left;
-      border-bottom: 2px dashed #eaeaea;
-      padding: 20px 0;
-      .article-title {
-        font-size: 16px;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        .subTitle {
-          font-size: 12px;
-          color: #555;
-        }
-        &:hover {
-          &,
-          .subTitle{
-            color: @theme-color;
-            cursor: pointer;
-          }
-        }
-      }
-      .article-time {
-        font-size: 12px;
-      }
-      .article-tag {
-        // background-color: @theme-color;
-        // color: @theme-color;
-        // padding: 2px 4px;
-        margin: 10px;
-        border-radius: 5px;
-        color: #555;
-        text-decoration: underline;
-        i {
-          position: relative;
-          top: 2px;
-          margin-right: 5px;
-        }
-        &:hover {
-          color: @theme-color;
-          cursor: pointer;
-        }
-      }
-    }
   }
   
   .category {
