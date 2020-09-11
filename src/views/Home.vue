@@ -1,5 +1,5 @@
 <template>
-  <div class="home" :class="stick ? 'stick' : ''">
+  <div class="home">
     <div class="leftSide">
       <div class="board article">
         <ArticleList :articleListData="recommendedArticle" />
@@ -13,7 +13,7 @@
         <div class="per-info name">DebraJohn</div>
         <div class="per-info">专业程序媛 | 业余音乐人</div>
         <div class="per-info">前端开发工程师</div>
-        <div class="per-info">摇滚迷 | 书影音记录爱好者</div>
+        <div class="per-info">摇滚迷 | 书影音爱好者</div>
         <ExternalLinks class="external-links" />
       </div>
     </div>
@@ -34,7 +34,6 @@ export default {
   },
   data() {
     return {
-      stick: false,
       formatTime,
       recommendedArticle: []
     }
@@ -43,9 +42,6 @@ export default {
     this.getArticleList()
   },
   mounted() {
-    EventBus.$on('stickMenu', data => {
-      this.stick = data
-    })
   },
   methods: {
     getArticleList() {
@@ -69,10 +65,6 @@ export default {
   display: flex;
   justify-content: space-between;
   font-size: 13px;
-  &.stick {
-    margin-top: 160px;
-  }
-  // width: 900px;
   .leftSide {
     width: 70%;
     margin-left: -20px;
@@ -117,6 +109,16 @@ export default {
       margin-top: 20px;
       padding-top: 20px;
       border-top: 2px dashed #eaeaea;
+    }
+  }
+}
+@media (max-width: 720px) {
+  .home {
+    flex-direction: column-reverse;
+    .leftSide,
+    .rightSide {
+      width: 100%;
+      margin: 0 0 20px 0;
     }
   }
 }

@@ -75,8 +75,6 @@ export default {
 
 .menu_container {
   min-width: 220px;
-  padding: 0 20px 0 0;
-  // outline: 1px dashed #333;
   &.stick {
     width: 100%;
     position: fixed;
@@ -89,6 +87,7 @@ export default {
     display: flex;
     justify-content: space-between;
     a {
+      margin-left: 40px;
       font-size: 13px;
       // font-weight: bold;
       color: @font-color;
@@ -117,7 +116,7 @@ export default {
     i {
       margin-bottom: 5px;
       display: block;
-      font-size: 16px;
+      // font-size: 20px;
       font-weight: bold;
     }
   }
@@ -137,11 +136,6 @@ export default {
     color: #fff;
     line-height: 2.5rem;
     text-align: center;
-  }
-  @media (min-width: 500px) {
-    .menu a {
-      margin-left: 40px;
-    }
   }
 }
 </style>

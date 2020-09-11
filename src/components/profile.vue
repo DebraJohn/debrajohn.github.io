@@ -22,7 +22,7 @@ export default {
 
 <style lang="less" scoped>
 .profile {
-  padding: 0 20px;
+  // margin: 0 20px;
   display: flex;
   text-decoration: none;
   color: #333;
@@ -47,11 +47,11 @@ export default {
       color: #555;
     }
   }
-  @media (max-width: 550px) {
-    .siteName {
-      display: none;
-    }
-  }
+  // @media (max-width: 550px) {
+  //   .siteName {
+  //     display: none;
+  //   }
+  // }
 }
 </style>
 

@@ -2,7 +2,11 @@
   <header>
     <div class="header-container">
       <Profile/>
-      <Menu/>
+      <Menu class="pcOnly" />
+      <div class="phoneOnly"><a-icon type="menu" /></div>
+      <div v-if="menuBoardShow" class="menuBoard">
+        <Menu />
+      </div>
     </div>
   </header>
 </template>
@@ -19,12 +23,10 @@ export default {
   },
   data() {
     return {
+      menuBoardShow: false
     }
   },
   computed: {
-    // hideProfile() { // 隐藏头像
-    //   return this.$route.path.split('/').length > 2
-    // }
   },
   mounted() {
   },
@@ -51,6 +53,22 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
+    i {
+      font-size: 20px;
+      cursor: pointer;
+    }
   }
+  .phoneOnly {
+    display: none;
+  }
+  @media (max-width: 720px) {
+  .phoneOnly {
+    display: block;
+  }
+  .pcOnly {
+    display: none;
+  }
+}
 }
 </style>
