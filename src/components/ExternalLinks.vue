@@ -86,7 +86,7 @@ export default {
       content: " ";
       position: absolute;
       left: -60px;
-      top: 35px;
+      top: 55px;
       display: inline-block;
       width: 150px;
       height: 150px;

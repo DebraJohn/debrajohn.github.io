@@ -1,5 +1,9 @@
 <template>
-  <div class="articleList">
+  <div class="articleList"
+  :class="{
+    'slide-fade-enter-active': animationEnterActive,
+    'slide-fade-enter': animationEnter
+    }">
     <div
       class="article-list"
       v-for="item in articleListData"
@@ -39,10 +43,21 @@ export default {
   },
   data() {
     return {
-        formatTime
+        formatTime,
+        animationEnter: false,
+        animationEnterActive: false
     }
   },
   watch: {
+    articleListData(n, o) {
+      if (!o.length) return
+      this.animationEnterActive = false
+      this.animationEnter = true
+      setTimeout(() => {
+        this.animationEnterActive = true
+        this.animationEnter = false
+      }, 300)
+    }
   },
   methods: {
     toArticleDetail(articleId) {
@@ -112,6 +127,13 @@ export default {
     .article-intro {
       line-height: 25px;
     }
+  }
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-enter {
+    transform: translateX(10px);
+    opacity: 0;
   }
 }
 </style>
