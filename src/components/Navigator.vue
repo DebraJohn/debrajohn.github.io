@@ -42,7 +42,6 @@ export default {
 
 header {
   width: 100%;
-  // border-bottom: 2px dashed #ccc;
   box-shadow: 0px 4px 5px #eee;
   // background: #bbb;
   height: 100px;
