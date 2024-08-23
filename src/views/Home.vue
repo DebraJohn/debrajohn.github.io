@@ -8,7 +8,7 @@
     <div class="rightSide">
       <div class="board infomation">
         <div class="per-info avatar" @click="toAbout()">
-          <img :src="require('@/assets/images/avatar.jpg')" alt="">
+          <img :src="require('@/assets/images/avatar-1.jpg')" alt="">
         </div>
         <div class="per-info name">DebraJohn</div>
         <div class="per-info">专业程序媛 | 业余音乐人</div>
